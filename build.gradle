@@ -1,11 +1,19 @@
-plugins {
-    id 'java'
-}
-
-group 'org.example'
+group 'test-framework-nobdd-mobile-jj5sa'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+buildscript {
+    ext {
+        springBootVersion = '2.1.0.RELEASE'
+        jUnit5Version = '5.4.0'
+    }
+}
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
 
 repositories {
     mavenCentral()
@@ -13,16 +21,18 @@ repositories {
 }
 
 dependencies {
-// https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0'
-
-    testCompile 'com.squareup.retrofit2:retrofit:2.3.0'  // lib for parsing JSON api responses
-    testCompile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.3.1'
-    compile group: 'io.appium', name: 'java-client', version: '6.0.0-BETA5'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+    compile "org.junit.jupiter:junit-jupiter:${jUnit5Version}"
     testRuntime 'org.junit.platform:junit-platform-launcher:1.4.0'
-    compile("org.springframework.boot:spring-boot-starter-test:2.1.0.RELEASE")
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     compile group: 'io.appium', name: 'java-client', version: '7.3.0'
-//    implementation 'org.junit.jupiter:junit-jupiter'
+}
+
+task wrapperr(type: Wrapper) {
+    gradleVersion = '4.10.2'
+}
+
+test {
+    useJUnitPlatform()
 }
