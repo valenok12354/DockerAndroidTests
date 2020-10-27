@@ -1,6 +1,7 @@
 package ru.testing;
 
 import io.appium.java_client.android.AndroidDriver;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -25,7 +26,7 @@ public class AndroidTest {
     private AndroidDriver driver;
 
     @BeforeAll
-    public void initializeDriverAndInstallApp() throws Exception {
+    public void initializeDriverAndInstallApp() throws Exception  {
         driver = androidDriverInitializer.initializeAndroidDriver(androidDriverConfigurator.getDesiredCapabilities());
     }
 
