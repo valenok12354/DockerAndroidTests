@@ -1,0 +1,21 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "children" : [ {
+    "name" : "ru.testing.AndroidTest",
+    "children" : [ {
+      "name" : "click()",
+      "uid" : "3ac0bce5b38439f5",
+      "parentUid" : "46baaecfaeb3421352c2fa5528613075",
+      "status" : "passed",
+      "time" : {
+        "start" : 1603884818444,
+        "stop" : 1603884821232,
+        "duration" : 2788
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "ru.testing.AndroidTest"
+  } ],
+  "name" : "packages"
+}

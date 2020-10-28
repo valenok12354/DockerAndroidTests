@@ -1,0 +1,17 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "children" : [ {
+    "name" : "click()",
+    "uid" : "3ac0bce5b38439f5",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1603884818444,
+      "stop" : 1603884821232,
+      "duration" : 2788
+    },
+    "flaky" : false,
+    "parameters" : [ ]
+  } ],
+  "name" : "behaviors"
+}

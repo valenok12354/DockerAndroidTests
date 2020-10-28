@@ -1,0 +1,44 @@
+{
+  "uid" : "3ac0bce5b38439f5",
+  "name" : "click()",
+  "historyId" : "d297ebcab944d1e627df7848aaa18445",
+  "time" : {
+    "start" : 1603884818444,
+    "stop" : 1603884821232,
+    "duration" : 2788
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ru.testing.AndroidTest"
+  }, {
+    "name" : "package",
+    "value" : "ru.testing.AndroidTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "c46b62d2aa32dc1d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1603884764216,
+        "stop" : 1603884767105,
+        "duration" : 2889
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "3ac0bce5b38439f5.json",
+  "parameterValues" : [ ]
+}

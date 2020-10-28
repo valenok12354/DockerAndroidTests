@@ -32,8 +32,7 @@ public class AndroidTest {
 
     @Test
     public void click() {
-        driver.findElement(By.xpath("//*[@id='usernameTextField']"))
-              .click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
     }
 
 

@@ -1,24 +1,24 @@
-group 'test-framework-nobdd-mobile-jj5sa'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-
 buildscript {
     ext {
         springBootVersion = '2.1.0.RELEASE'
         jUnit5Version = '5.4.0'
     }
 }
-
-compileJava.options.encoding = "UTF-8"
-compileTestJava.options.encoding = "UTF-8"
-
+plugins {
+    id 'io.qameta.allure' version '2.5' // Latest Plugin Version
+    id 'java'
+}
 repositories {
     mavenCentral()
     maven { url 'https://jitpack.io' }
 }
+group 'test-framework-nobdd-mobile-jj5sa'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
 
 dependencies {
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
@@ -27,6 +27,37 @@ dependencies {
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
     compile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     compile group: 'io.appium', name: 'java-client', version: '7.3.0'
+}
+
+
+allure {
+    autoconfigure = true
+    version = '2.7.0'  // Latest Allure Version
+
+    useJUnit5 {
+        version = '2.7.0' // Latest Allure Version
+    }
+
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter-api:5.2.0'
+    )
+    testRuntimeOnly(
+            'org.junit.jupiter:junit-jupiter-engine:5.2.0'
+    )
+}
+
+test {
+    useJUnitPlatform()
 }
 
 task wrapperr(type: Wrapper) {
