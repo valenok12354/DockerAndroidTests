@@ -9,6 +9,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import lombok.SneakyThrows;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.jupiter.api.BeforeAll;
@@ -51,7 +52,7 @@ public class AndroidTest {
     @Description("Dialing number")
     @Story(value = "Pure 4G call")
     @Test()
-    public void click() {
+    public void click() throws Exception {
         driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
         driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
         driver.findElementById("com.android.contacts:id/contacts_dialpad_two").click();
@@ -64,6 +65,11 @@ public class AndroidTest {
         driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
         driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
         driver.findElementById("com.android.contacts:id/dialButton").click();
+        Thread.sleep(3000);
+        driver.findElementById("com.android.incallui:id/endButton").click();
+
+
+
         Allure.addAttachment("Any text", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
 //        saveFailureScreenshot(driver);
     }
