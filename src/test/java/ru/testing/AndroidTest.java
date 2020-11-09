@@ -53,7 +53,17 @@ public class AndroidTest {
     @Test()
     public void click() {
         driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
-
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_two").click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_six").click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_two").click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
+        driver.findElementById("com.android.contacts:id/dialButton").click();
         Allure.addAttachment("Any text", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
 //        saveFailureScreenshot(driver);
     }
