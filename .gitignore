@@ -25,7 +25,7 @@ Thumbs.db
 *.hprof
 /target/
 /out
-/allure-report/
+/allure-results/
 
 ### Gradle template
 .gradle
