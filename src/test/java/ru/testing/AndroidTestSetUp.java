@@ -42,14 +42,8 @@ public class AndroidTestSetUp {
     public AndroidDriver driver;
 
     @BeforeAll
-    public void initializeDriverAndInstallApp() throws Exception {
+    public void initializeDriverAndCleanUp() throws Exception {
         driver = androidDriverInitializer.initializeAndroidDriver(androidDriverConfigurator.getDesiredCapabilities());
-
-    }
-
-    @Test()
-    @Order(1)
-    public void cleanUp() {
         wait.implicitWait(driver, 10);
         callSteps.airplaneModeOnOff(driver);
     }

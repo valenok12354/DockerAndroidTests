@@ -11,6 +11,7 @@ import io.qameta.allure.Story;
 
 import static ru.testing.settings.SetProperties.locatorProperties;
 
+import org.junit.Before;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.OutputType;
@@ -27,32 +28,40 @@ import ru.testing.steps.CallSteps;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
+
 @TestInstance(PER_CLASS)
 @SpringBootTest(classes = Application.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GSMCallTest extends AndroidTestSetUp {
-  private final static String declineButton =   "com.android.incallui:id/declinebutton";
+    private final static String declineButtonUnLocked = "com.android.incallui:id/declinebutton";
 
+    @Disabled
     @Test
     public void incomingCall() throws InterruptedException {
         Utils utils = new Utils();
-        utils.waitUntilDisplayed(driver,declineButton,true,30);
-        driver.findElementById(declineButton).click();
+        utils.waitDeclineButton(driver, declineButtonUnLocked);
     }
 
-//    @Test()
-//    public void setUpTechnology() throws Exception {
-//        wait.implicitWait(driver, 10);
-//        callSteps.scrollBySwipeToDirection(false, driver);
-//        driver.findElementByXPath(locatorProperties().getProperty("choose_RAT")).click();
-//        driver.findElementByXPath("//android.widget.CheckedTextView[@index='3']").click(); // 0->4/3/2G, 1->3/2G, 2->3G only 3-GSM only
-//        driver.runAppInBackground(Duration.ofSeconds(-1));
-//        saveFailureScreenshot(driver);
-//    }
+    @Test()
+    @Order(1)
+    public void setUpTechnology() throws Exception {
+        wait.implicitWait(driver, 10);
+        callSteps.scrollBySwipeToDirection(false, driver);
+        driver.findElementByXPath(locatorProperties().getProperty("choose_RAT")).click();
+        driver.findElementByXPath("//android.widget.CheckedTextView[@index='3']").click(); // 0->4/3/2G, 1->3/2G, 2->3G only 3-GSM only
+        driver.runAppInBackground(Duration.ofSeconds(-1));
+        saveFailureScreenshot(driver);
+    }
 
-//    @Test()
-//    public void click() throws Exception {
-//          driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
-//          driver.runAppInBackground(Duration.ofSeconds(-1));
+    @Test()
+    @Order(2)
+    public void click() {
+        driver.runAppInBackground(Duration.ofSeconds(-1));
+        wait.implicitWait(driver, 10);
+//        driver.findElementByXPath("//android.widget.TextView[@content-desc=\"Телефон\"]").click();
+        driver.findElementByAccessibilityId("Телефон").click();
+         //TODO: -change to your language AccessibilityId, or find new locator and make change
+        driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
 //        driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
 //        driver.findElementById("com.android.contacts:id/contacts_dialpad_two").click();
 //        driver.findElementById("com.android.contacts:id/contacts_dialpad_six").click();
@@ -67,7 +76,6 @@ public class GSMCallTest extends AndroidTestSetUp {
 //        Thread.sleep(3000);
 //        driver.findElementById("com.android.incallui:id/endButton").click();
 //        Allure.addAttachment("Any text", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
-//          saveFailureScreenshot(driver);
-//    }
-
+        saveFailureScreenshot(driver);
+    }
 }

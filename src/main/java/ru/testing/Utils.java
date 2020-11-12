@@ -9,13 +9,21 @@ public class Utils {
         do {
             try {
                 driver.findElementById(locator);
-                isDisplayed=true;
+                isDisplayed = true;
             } catch (Exception e) {
-                isDisplayed=false;
+                isDisplayed = false;
             }
-        } while (displayed!=isDisplayed && (System.currentTimeMillis()-start)/1000F<maxSecondsToWait);
-        System.out.println("Time to wait "+locator+" to "+": "+(System.currentTimeMillis()-start)/1000F+" seconds. "
-                +". Device "+driver.getCapabilities().getCapability("deviceName"));
+        } while (displayed != isDisplayed && (System.currentTimeMillis() - start) / 1000F < maxSecondsToWait);
         return isDisplayed;
+    }
+
+    public void findElementById(AndroidDriver driver, String searchLocator) {
+        driver.findElementById(searchLocator).click();
+    }
+
+    public void waitDeclineButton(AndroidDriver driver, String searchUnLockedlocator) throws InterruptedException {
+        if (waitUntilDisplayed(driver, searchUnLockedlocator, true, 15)) {
+            findElementById(driver, searchUnLockedlocator);
+        }
     }
 }
