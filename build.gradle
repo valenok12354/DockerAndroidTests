@@ -23,12 +23,11 @@ compileTestJava.options.encoding = "UTF-8"
 dependencies {
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
     compile "org.junit.jupiter:junit-jupiter:${jUnit5Version}"
-    testRuntime 'org.junit.platform:junit-platform-launcher:1.4.0'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
     compile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     compile group: 'io.appium', name: 'java-client', version: '7.3.0'
+    testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.0'
 }
-
 
 allure {
     autoconfigure = true
@@ -37,7 +36,6 @@ allure {
     useJUnit5 {
         version = '2.7.0' // Latest Allure Version
     }
-
 }
 
 sourceCompatibility = 1.8
@@ -53,6 +51,7 @@ dependencies {
     )
     testRuntimeOnly(
             'org.junit.jupiter:junit-jupiter-engine:5.2.0'
+
     )
 }
 
