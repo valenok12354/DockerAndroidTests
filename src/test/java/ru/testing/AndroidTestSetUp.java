@@ -12,6 +12,7 @@ import io.qameta.allure.Story;
 import static ru.testing.settings.SetProperties.locatorProperties;
 
 import lombok.Getter;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -41,42 +42,11 @@ public class AndroidTestSetUp {
     public ImplicitWait wait;
     public AndroidDriver driver;
 
+    @SneakyThrows
     @BeforeAll
-    public void initializeDriverAndCleanUp() throws Exception {
+    public void initializeDriverAndCleanUp() {
         driver = androidDriverInitializer.initializeAndroidDriver(androidDriverConfigurator.getDesiredCapabilities());
         wait.implicitWait(driver, 10);
         callSteps.airplaneModeOnOff(driver);
-    }
-
-//    @Epic("Testing calls")
-//    @Feature("4G Testing")
-//    @Severity(SeverityLevel.MINOR)
-//    @Description("Dialing number")
-//    @Story(value = "Pure 4G call")
-
-
-//      @Test()
-//    public void click() throws Exception {
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_two").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_six").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_two").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
-//        driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
-//        driver.findElementById("com.android.contacts:id/dialButton").click();
-//        Thread.sleep(3000);
-//        driver.findElementById("com.android.incallui:id/endButton").click();
-//        Allure.addAttachment("Any text", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
-////        saveFailureScreenshot(driver);
-//    }
-
-    @Attachment(value = "Screenshot", type = "image/png")
-    public byte[] saveFailureScreenshot(AndroidDriver driver) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }

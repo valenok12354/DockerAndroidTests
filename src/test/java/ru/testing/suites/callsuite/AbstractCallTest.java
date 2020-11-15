@@ -1,58 +1,32 @@
 package ru.testing.suites.callsuite;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static ru.testing.settings.SetProperties.locatorProperties;
-
 import lombok.SneakyThrows;
-import org.junit.Before;
-import org.junit.jupiter.api.*;
-import org.junit.runner.RunWith;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import ru.testing.AndroidTestSetUp;
-import ru.testing.Application;
 import ru.testing.Utils;
-import ru.testing.settings.AndroidDriverConfigurator;
-import ru.testing.settings.AndroidDriverInitializer;
-import ru.testing.steps.CallSteps;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
-@TestInstance(PER_CLASS)
-@SpringBootTest(classes = Application.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class GSMCallTest extends AbstractCallTest {
+public abstract class AbstractCallTest extends AndroidTestSetUp {
+    private final static String declineButtonUnLocked = "com.android.incallui:id/declinebutton";
 
     @SneakyThrows
-    @Test()
-    @Order(1)
-    public void setUpTechnology() {
-        wait.implicitWait(driver, 10);
-        callSteps.scrollBySwipeToDirection(false, driver);
-        driver.findElementByXPath(locatorProperties().getProperty("choose_RAT")).click();
-        driver.findElementByXPath("//android.widget.CheckedTextView[@index='3']").click(); // 0->4/3/2G, 1->3/2G, 2->3G only 3-GSM only
-//        driver.runAppInBackground(Duration.ofSeconds(-1));
+    @Disabled
+    @Test
+    public void incomingCall() {
+        Utils utils = new Utils();
+        utils.waitDeclineButton(driver, declineButtonUnLocked);
     }
 
     @Test()
     public void click() {
         WebElement webElement = driver.findElementByXPath("//android.widget.TextView[@text='Предпочтительная сеть: только GSM']");
-        assertThat(webElement.getText(), is("Предпочтительная сеть: только GSM" ));
+        assertThat(webElement, is(true));
         System.out.println(webElement);
         driver.runAppInBackground(Duration.ofSeconds(-1));
         wait.implicitWait(driver, 10);
