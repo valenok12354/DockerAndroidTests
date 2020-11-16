@@ -1,5 +1,6 @@
 package ru.testing.suites.callsuite;
 
+import io.qameta.allure.Allure;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Order;
@@ -7,10 +8,13 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.internal.matchers.NotNull;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import ru.testing.AndroidTestSetUp;
 import ru.testing.Utils;
 
+import java.io.ByteArrayInputStream;
 import java.time.Duration;
 import java.util.List;
 
@@ -60,8 +64,7 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
         Thread.sleep(3000);
         driver.findElementById("com.android.incallui:id/endButton").click();
         getCallRecord();
-//      Allure.addAttachment("Any text", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
-
+        takeScreenshot("callToAutoDialer");
     }
 
     @SneakyThrows
@@ -79,11 +82,16 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
         Thread.sleep(3000);
         driver.findElementById("com.android.incallui:id/endButton").click();
         getCallRecord();
+        takeScreenshot("callToInvalidNumber");
     }
 
-    public void getCallRecord() {
+    private void getCallRecord() {
         driver.findElementByAccessibilityId("Телефон").click();
         List<WebElement> list = driver.findElementsById("com.android.contacts:id/primary_action_view");
         assertTrue(list.get(0).isDisplayed());
+    }
+    private void takeScreenshot(String name) {
+        Allure.addAttachment(name, new ByteArrayInputStream(((TakesScreenshot) driver)
+                .getScreenshotAs(OutputType.BYTES)));
     }
 }
