@@ -1,4 +1,4 @@
-package ru.testing;
+package ru.testing.Utils;
 
 import io.appium.java_client.android.AndroidDriver;
 

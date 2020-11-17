@@ -1,18 +1,15 @@
 package ru.testing.suites.callsuite;
 
+
 import io.qameta.allure.Allure;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.internal.matchers.NotNull;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import ru.testing.AndroidTestSetUp;
-import ru.testing.Utils;
+import ru.testing.Utils.Utils;
 
 import java.io.ByteArrayInputStream;
 import java.time.Duration;
@@ -84,6 +81,7 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
         getCallRecord();
         takeScreenshot("callToInvalidNumber");
     }
+
 
     private void getCallRecord() {
         driver.findElementByAccessibilityId("Телефон").click();
