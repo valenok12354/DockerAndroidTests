@@ -11,6 +11,7 @@ import io.qameta.allure.Story;
 
 import static ru.testing.settings.SetProperties.locatorProperties;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -33,8 +34,9 @@ import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 @SpringBootTest(classes = Application.class)
 public class WCDMACallTest extends AndroidTestSetUp {
 
+    @SneakyThrows
     @Test()
-    public void setUpTechnology() throws Exception {
+    public void setUpTechnology()  {
         wait.implicitWait(driver, 10);
         callSteps.scrollBySwipeToDirection(false, driver);
         driver.findElementByXPath(locatorProperties().getProperty("choose_RAT")).click();

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ADBUtils {
     public static void main(String[] args) {
-        runProcess("adb push");
+        runProcess("adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'");
     }
 
     private static final String[] WIN_RUNTIME = {"cmd.exe", "/C"};
@@ -41,6 +41,6 @@ public class ADBUtils {
             System.out.println("temp line: " + _temp);
             line.add(_temp);
         }
-        System.out.println("result after command: " + line);
+        System.out.println("result after command: " +  line);
     }
 }

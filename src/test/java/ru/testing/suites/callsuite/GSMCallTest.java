@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GSMCallTest extends AbstractCallTest {
 
-    @Disabled
+//    @Disabled
     @Test
     @Order(1)
     @Override

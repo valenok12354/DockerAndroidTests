@@ -49,4 +49,12 @@ public class AndroidTestSetUp {
         wait.implicitWait(driver, 10);
         callSteps.airplaneModeOnOff(driver);
     }
+
+    @SneakyThrows
+    public void setUpTechnology() {
+        wait.implicitWait(driver, 10);
+        callSteps.scrollBySwipeToDirection(false, driver);
+        driver.findElementByXPath(locatorProperties().getProperty("choose_RAT")).click();
+    }
+
 }
