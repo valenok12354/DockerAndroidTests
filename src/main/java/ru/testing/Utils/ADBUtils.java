@@ -10,9 +10,8 @@ import java.util.List;
 
 public class ADBUtils {
     public static void main(String[] args) {
-        runProcess("adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'");
+        runProcess("adb reboot");
     }
-
     private static final String[] WIN_RUNTIME = {"cmd.exe", "/C"};
 
     private static <T> T[] concat(T[] second) {
