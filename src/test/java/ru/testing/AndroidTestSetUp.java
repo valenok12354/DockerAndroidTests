@@ -1,24 +1,12 @@
 package ru.testing;
 
 import io.appium.java_client.android.AndroidDriver;
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
+
 
 import static ru.testing.settings.SetProperties.locatorProperties;
 
-import lombok.Getter;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.testing.settings.AndroidDriverConfigurator;
@@ -50,6 +38,7 @@ public class AndroidTestSetUp {
         callSteps.airplaneModeOnOff(driver);
     }
 
+    @Disabled
     @SneakyThrows
     public void setUpTechnology() {
         wait.implicitWait(driver, 10);
