@@ -27,7 +27,6 @@ public class SmsTest extends AbstractCallTest {
         smsPage.sendSmsClick();
     }
 
-    @SneakyThrows
     @Test
     public void smsDuringCall() {
         interruptedOutgoingSmsCall();
