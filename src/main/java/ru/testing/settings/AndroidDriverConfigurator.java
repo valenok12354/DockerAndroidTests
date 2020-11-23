@@ -18,7 +18,7 @@ public class AndroidDriverConfigurator {
 //        capabilities.setCapability(MobileCapabilityType.APP, myApp);
         capabilities.setCapability("appPackage", deviceProperties().getProperty("app_package"));
         capabilities.setCapability("appActivity", deviceProperties().getProperty("app_activity"));
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"android" );
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "android");
         capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
         capabilities.setCapability(MobileCapabilityType.FULL_RESET, false);

@@ -36,5 +36,4 @@ public class CallSteps {
         } catch (IllegalCoordinatesException e) {
         }
     }
-
 }

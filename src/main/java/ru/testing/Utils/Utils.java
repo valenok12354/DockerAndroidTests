@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Utils {
-    public Boolean waitUntilDisplayed(AndroidDriver driver, String locator, Boolean displayed, int maxSecondsToWait) throws InterruptedException {
+    public Boolean waitUntilDisplayed(AndroidDriver driver, String locator, Boolean displayed, int maxSecondsToWait) {
         long start = System.currentTimeMillis();
         boolean isDisplayed = false;
         do {
@@ -24,13 +24,18 @@ public class Utils {
         driver.findElementById(searchLocator).click();
     }
 
-    public void waitDeclineButton(AndroidDriver driver, String searchUnLockedlocator) throws InterruptedException {
-        if (waitUntilDisplayed(driver, searchUnLockedlocator, true, 15)) {
+    public void waitDeclineButton(AndroidDriver driver, String searchUnLockedlocator) {
+        if (waitUntilDisplayed(driver, searchUnLockedlocator, true, 10)) {
             findElementById(driver, searchUnLockedlocator);
         }
     }
-    public void launchActivity(AndroidDriver driver, Activity activityName)
-    {
+
+    public void waitRejectSms(AndroidDriver driver, String searchSmsToDecline) {
+        if (waitUntilDisplayed(driver, searchSmsToDecline, true, 10)) {
+            findElementById(driver, searchSmsToDecline);
+        }
+    }
+    public void launchActivity(AndroidDriver driver, Activity activityName) {
         driver.startActivity(activityName);
     }
 }

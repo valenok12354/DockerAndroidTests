@@ -13,8 +13,6 @@ import ru.testing.settings.AndroidDriverConfigurator;
 import ru.testing.settings.AndroidDriverInitializer;
 import ru.testing.steps.CallSteps;
 
-import java.time.Duration;
-
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 @TestInstance(PER_CLASS)
@@ -35,7 +33,7 @@ public class AndroidTestSetUp {
     public void initializeDriverAndCleanUp() {
         driver = androidDriverInitializer.initializeAndroidDriver(androidDriverConfigurator.getDesiredCapabilities());
         wait.implicitWait(driver, 10);
-        callSteps.airplaneModeOnOff(driver);
+//        callSteps.airplaneModeOnOff(driver);
     }
 
     @Disabled

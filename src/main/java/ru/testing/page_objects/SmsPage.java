@@ -19,6 +19,12 @@ public class SmsPage {
     @FindBy(id = "com.android.mms:id/send_button_sms")
     private WebElement sendSmsArrow;
 
+    @FindBy(id = "com.android.incallui:id/mmsbutton")
+    private WebElement mmsButton;
+
+    @FindBy(id = "android:id/text1")
+    private WebElement smsDeclineText;
+
     public SmsPage(AndroidDriver driver) {
         PageFactory.initElements(driver, this);
     }
@@ -37,5 +43,14 @@ public class SmsPage {
 
     public void sendSmsClick() {
         sendSmsArrow.click();
+    }
+
+    public void callSmsClick() {
+        mmsButton.click();
+//        smsDeclineText.click();
+    }
+
+    public void declineSmsTextClick() {
+        smsDeclineText.click();
     }
 }
