@@ -1,4 +1,4 @@
-package ru.testing.suites;
+package ru.testing.suites.dataservicesuite;
 
 import io.appium.java_client.android.Activity;
 import lombok.SneakyThrows;
@@ -17,7 +17,7 @@ public class SpeedTestTest extends AndroidTestSetUp {
     Utils utils;
 
     @SneakyThrows
-    @RepeatedTest(2)
+    @RepeatedTest(3)
     public void speedTestStart() {
         SpeedTestPage speedTestPage = new SpeedTestPage(driver);
         wait.implicitWaitMainScreen(driver, 10);

@@ -1,4 +1,4 @@
-package ru.testing.suites.supplementarysute;
+package ru.testing.suites.supplementarysuite;
 
 import org.junit.jupiter.api.Test;
 import ru.testing.suites.callsuite.AbstractCallTest;

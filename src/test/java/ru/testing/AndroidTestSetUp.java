@@ -1,12 +1,10 @@
 package ru.testing;
 
 import io.appium.java_client.android.AndroidDriver;
-
-
-import static ru.testing.settings.SetProperties.locatorProperties;
-
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.testing.settings.AndroidDriverConfigurator;
@@ -14,6 +12,7 @@ import ru.testing.settings.AndroidDriverInitializer;
 import ru.testing.steps.CallSteps;
 
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
+import static ru.testing.settings.SetProperties.locatorProperties;
 
 @TestInstance(PER_CLASS)
 @SpringBootTest(classes = Application.class)

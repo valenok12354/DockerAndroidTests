@@ -80,9 +80,7 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
         AllureScreenshot.takeScreenshot("callToAutoDialer", driver);
     }
 
-    @SneakyThrows
-    public void autoHelpCall() {
-        CallPage callPage = new CallPage(driver);
+    public void endlessAutoCall() {
         driver.runAppInBackground(Duration.ofSeconds(-1));
         driver.findElementByAccessibilityId("Телефон").click();
         driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
@@ -90,6 +88,12 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
         driver.findElementById("com.android.contacts:id/contacts_dialpad_seven").click();
         driver.findElementById("com.android.contacts:id/contacts_dialpad_four").click();
         driver.findElementById("com.android.contacts:id/dialButton").click();
+    }
+
+    @SneakyThrows
+    public void autoHelpCall() {
+        CallPage callPage = new CallPage(driver);
+        endlessAutoCall();
         Thread.sleep(5000);
         callPage.clickOnHold();
     }
