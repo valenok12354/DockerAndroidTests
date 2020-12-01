@@ -1,11 +1,12 @@
 package ru.testing.suites.callsuite;
 
+
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import lombok.SneakyThrows;
-import io.appium.java_client.TouchAction;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.testing.AllureScreenshot;
@@ -33,25 +34,29 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
     public void callToDomesticNumber() {
         driver.runAppInBackground(Duration.ofSeconds(-1));
         wait.implicitWait(driver, 10);
-        driver.findElementByAccessibilityId("Телефон").click();
+        driver.findElementByXPath("//android.widget.ImageView[@content-desc=\"Телефон\"]").click();
+        driver.findElementById("com.google.android.dialer:id/dialpad_fab").click();
         TouchAction action = new TouchAction(driver);
-        WebElement webElement = driver.findElementById("com.android.contacts:id/contacts_dialpad_zero");
+        WebElement webElement = driver.findElementById("com.google.android.dialer:id/zero");
         action.longPress(new LongPressOptions().withElement(new ElementOption().
                 withElement(webElement))).perform();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_seven").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_four").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_nine").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_five").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_five").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_five").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_five").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_five").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_zero").click();
-        driver.findElementById("com.android.contacts:id/dialButton").click();
+        driver.findElementById("com.google.android.dialer:id/seven").click();
+        driver.findElementById("com.google.android.dialer:id/four").click();
+        driver.findElementById("com.google.android.dialer:id/nine").click();
+        driver.findElementById("com.google.android.dialer:id/five").click();
+        driver.findElementById("com.google.android.dialer:id/five").click();
+        driver.findElementById("com.google.android.dialer:id/zero").click();
+        driver.findElementById("com.google.android.dialer:id/zero").click();
+        driver.findElementById("com.google.android.dialer:id/five").click();
+        driver.findElementById("com.google.android.dialer:id/five").click();
+        driver.findElementById("com.google.android.dialer:id/five").click();
+        driver.findElementById("com.google.android.dialer:id/zero").click();
+        driver.findElementById("com.google.android.dialer:id/dialpad_voice_call_button").click();
+        driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/" +
+                "android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/" +
+                "android.widget.ListView/android.widget.LinearLayout[2]").click();
         Thread.sleep(30000);
-        driver.findElementById("com.android.incallui:id/endButton").click();
+        driver.findElementById("com.google.android.dialer:id/incall_end_call").click();
         getCallRecord();
         AllureScreenshot.takeScreenshot("callToAutoDialer", driver);
     }
@@ -131,6 +136,7 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
         getCallRecord();
         AllureScreenshot.takeScreenshot("callToInvalidNumber", driver);
     }
+
     private void getCallRecord() {
         driver.findElementByAccessibilityId("Телефон").click();
         List<WebElement> list = driver.findElementsById("com.android.contacts:id/primary_action_view");

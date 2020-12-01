@@ -13,7 +13,8 @@ public class AndroidDriverConfigurator {
     @SneakyThrows
     public DesiredCapabilities getDesiredCapabilities() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, deviceProperties().getProperty("platform_version"));
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,
+                deviceProperties().getProperty("platform_version"));
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceProperties().getProperty("device_name"));
 //        capabilities.setCapability(MobileCapabilityType.APP, myApp);
         capabilities.setCapability("appPackage", deviceProperties().getProperty("app_package"));
