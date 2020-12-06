@@ -27,7 +27,7 @@ public class FlightModeTest extends AbstractCallTest {
     public void callingFM(){
         wait.implicitWait(driver,10);
         driver.toggleAirplaneMode();
-        endlessAutoCall();
+        callToAutoDialer();
         AllureScreenshot.takeScreenshot("flightModeCallScreen",driver);
         driver.findElementById("android:id/button1").click();
         utils.launchActivity(driver, new Activity(APP_PACKAGE, APP_ACTIVITY));

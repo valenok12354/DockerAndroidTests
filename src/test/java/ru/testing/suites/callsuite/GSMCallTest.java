@@ -1,30 +1,27 @@
 package ru.testing.suites.callsuite;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebElement;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.testing.Application;
 
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
+import static ru.testing.settings.SetProperties.networkProperties;
 
 @TestInstance(PER_CLASS)
 @SpringBootTest(classes = Application.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GSMCallTest extends AbstractCallTest {
+    private final static String NUMBER = "1";
 
     @Test
     @Order(1)
     @Override
+    @SneakyThrows
     public void setUpTechnology() {
         super.setUpTechnology();
-        driver.findElementByXPath("//android.widget.CheckedTextView[@index='3']").click(); // 0->4/3/2G, 1->3/2G, 2->3G only 3-GSM only
-        WebElement webElement = driver.findElementByXPath("//android.widget.TextView[@text='Предпочтительная сеть: только GSM']");
-        assertThat(webElement.getText(), is("Предпочтительная сеть: только GSM"));
+        driver.findElementByXPath(networkProperties().getProperty("Basic") + "[1]").click(); // 1->5G, 2->LTE, 3->3G 2-GSM only
     }
-
     @Disabled
     @Test
     @Override
@@ -34,10 +31,18 @@ public class GSMCallTest extends AbstractCallTest {
 
     @Test
     @Override
+    public void interruptedOutgoingSmsCall() {
+        super.interruptedOutgoingSmsCall();
+    }
+
+    @Disabled
+    @Test
+    @Override
     public void callToInvalidNumber() {
         super.callToInvalidNumber();
     }
 
+    @Disabled
     @Test
     @Override
     public void callToDomesticNumber() {

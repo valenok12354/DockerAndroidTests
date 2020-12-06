@@ -1,6 +1,5 @@
 package ru.testing.suites.callsuite;
 
-import static ru.testing.settings.SetProperties.locatorProperties;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,6 @@ public class WCDMACallTest extends AndroidTestSetUp {
     public void setUpTechnology() {
         wait.implicitWait(driver, 10);
         callSteps.scrollBySwipeToDirection(false, driver);
-        driver.findElementByXPath(locatorProperties().getProperty("choose_RAT")).click();
         driver.findElementByXPath("//android.widget.CheckedTextView[@index='2']").click(); // 0->4/3/2G, 1->3/2G, 2->3G only 4-GSM only
         driver.runAppInBackground(Duration.ofSeconds(-1));
     }

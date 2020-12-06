@@ -9,16 +9,16 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SmsPage {
 
-    @AndroidFindBy(accessibility = "Новое сообщение")
+    @AndroidFindBy(accessibility = "Начать чат")
     private WebElement newMessage;
 
-    @FindBy(id = "com.android.mms:id/recipients_editor")
+    @FindBy(id = "com.google.android.apps.messaging:id/recipient_text_view")
     private WebElement recipientsEdit;
 
-    @FindBy(id = "com.android.mms:id/embedded_text_editor")
+    @FindBy(id = "com.google.android.apps.messaging:id/compose_message_text")
     private WebElement textEditor;
 
-    @FindBy(id = "com.android.mms:id/send_button_sms")
+    @FindBy(id = "com.google.android.apps.messaging:id/send_message_button_icon")
     private WebElement sendSmsArrow;
 
     @FindBy(id = "com.android.incallui:id/mmsbutton")
@@ -36,7 +36,7 @@ public class SmsPage {
     }
 
     public void recipientsNumberFill() {
-        recipientsEdit.sendKeys("89169269109");
+        recipientsEdit.sendKeys("89264430587");
     }
 
     public void addRussianText() { // TODO English or Chinese

@@ -13,9 +13,9 @@ public class SetProperties {
         properties.load(inputStream);
         return  properties;
     }
-    public static Properties locatorProperties() throws IOException {
+    public static Properties networkProperties() throws IOException {
         Properties properties = new Properties();
-        InputStream inputStream = new FileInputStream("locator.properties");
+        InputStream inputStream = new FileInputStream("network.properties");
         properties.load(inputStream);
         return  properties;
     }

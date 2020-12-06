@@ -14,9 +14,8 @@ import static io.appium.java_client.touch.offset.PointOption.point;
 @Component
 public class CallSteps {
 
-    public void airplaneModeOnOff(AndroidDriver driver){
-        driver.toggleAirplaneMode();
-        driver.toggleAirplaneMode();
+    public void airplaneModeOnOff(AndroidDriver driver) {
+
     }
 
     public void scrollBySwipeToDirection(Boolean isSwipeDirectionUp, AndroidDriver driver) {

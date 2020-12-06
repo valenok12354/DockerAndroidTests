@@ -7,6 +7,5 @@ public class CallPageTest extends AbstractCallTest {
 
     @Test
     public void holdCall() {
-        autoHelpCall();
     }
 }
