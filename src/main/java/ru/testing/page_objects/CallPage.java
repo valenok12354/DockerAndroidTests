@@ -2,19 +2,29 @@ package ru.testing.page_objects;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import lombok.Getter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
+@Getter
 public class CallPage {
     @FindBy(id = "com.android.incallui:id/holdButton")
     private WebElement holdButton;
+
+    @FindBy(id = "com.google.android.dialer:id/new_call_log_recycler_view")
+    private List<WebElement> callList;
 
     @FindBy(id = "com.google.android.dialer:id/dialpad_fab")
     private WebElement dialpad;
 
     @FindBy(id = "com.google.android.dialer:id/dialpad_voice_call_button")
     private WebElement voiceCallButton;
+
+    @FindBy(id = "com.google.android.dialer:id/incall_end_call")
+    private WebElement endCallButton;
 
     @FindBy(id = "com.google.android.dialer:id/zero")
     private WebElement zero;
@@ -100,5 +110,17 @@ public class CallPage {
 
     public void clickVoiceCallButton() {
         voiceCallButton.click();
+    }
+
+    public void clickEndCallButton() {
+        endCallButton.click();
+    }
+
+    public void longZero() {
+        zero.getText();
+    }
+
+    public boolean callList() {
+       return callList.get(0).isDisplayed();
     }
 }

@@ -12,7 +12,7 @@ import static ru.testing.settings.SetProperties.networkProperties;
 @SpringBootTest(classes = Application.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GSMCallTest extends AbstractCallTest {
-    private final static String NUMBER = "1";
+    private final static String NUMBER = "[1]";
 
     @Test
     @Order(1)
@@ -20,9 +20,9 @@ public class GSMCallTest extends AbstractCallTest {
     @SneakyThrows
     public void setUpTechnology() {
         super.setUpTechnology();
-        driver.findElementByXPath(networkProperties().getProperty("Basic") + "[1]").click(); // 1->5G, 2->LTE, 3->3G 2-GSM only
+        driver.findElementByXPath(networkProperties().getProperty("Basic") + NUMBER).click(); // 1->5G, 2->LTE, 3->3G 2-GSM only
     }
-    @Disabled
+
     @Test
     @Override
     public void callToAutoDialer() {
@@ -35,14 +35,12 @@ public class GSMCallTest extends AbstractCallTest {
         super.interruptedOutgoingSmsCall();
     }
 
-    @Disabled
     @Test
     @Override
     public void callToInvalidNumber() {
         super.callToInvalidNumber();
     }
 
-    @Disabled
     @Test
     @Override
     public void callToDomesticNumber() {

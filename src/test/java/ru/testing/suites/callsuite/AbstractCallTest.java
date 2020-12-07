@@ -19,9 +19,6 @@ import ru.testing.page_objects.MainPage;
 import ru.testing.page_objects.SmsPage;
 
 import java.time.Duration;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class AbstractCallTest extends AndroidTestSetUp {
     private static final String MESSAGE_PACKAGE = "com.google.android.apps.messaging";
@@ -60,6 +57,7 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
     @Disabled
     @SneakyThrows
     public void setUpTechnology() {
+        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         wait.implicitWait(driver, 10);
         utils.launchActivity(driver, new Activity(PREFERRED_NW_PACKAGE, PREFERRED_NW_ACTIVITY));
     }
@@ -71,53 +69,56 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
 
     @SneakyThrows
     public void callToDomesticNumber() {
+        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         driver.runAppInBackground(Duration.ofSeconds(-1));
-        wait.implicitWait(driver, 10);
-        driver.findElementByXPath("//android.widget.ImageView[@content-desc=\"Телефон\"]").click();
-        driver.findElementById("com.google.android.dialer:id/dialpad_fab").click();
+        wait.implicitWait(driver,10);
+        mainPage().clickOnPhone();
+        callPage().clickDialPad();
         TouchAction action = new TouchAction(driver);
-        WebElement webElement = driver.findElementById("com.google.android.dialer:id/zero");
+        WebElement webElement = callPage().getZero();
         action.longPress(new LongPressOptions().withElement(new ElementOption().
                 withElement(webElement))).perform();
-        driver.findElementById("com.google.android.dialer:id/seven").click();
-        driver.findElementById("com.google.android.dialer:id/four").click();
-        driver.findElementById("com.google.android.dialer:id/nine").click();
-        driver.findElementById("com.google.android.dialer:id/five").click();
-        driver.findElementById("com.google.android.dialer:id/five").click();
-        driver.findElementById("com.google.android.dialer:id/zero").click();
-        driver.findElementById("com.google.android.dialer:id/zero").click();
-        driver.findElementById("com.google.android.dialer:id/five").click();
-        driver.findElementById("com.google.android.dialer:id/five").click();
-        driver.findElementById("com.google.android.dialer:id/five").click();
-        driver.findElementById("com.google.android.dialer:id/zero").click();
-        driver.findElementById("com.google.android.dialer:id/dialpad_voice_call_button").click();
-        Thread.sleep(30000);
-        driver.findElementById("com.google.android.dialer:id/incall_end_call").click();
+        callPage().clickSeven();
+        callPage().clickFour();
+        callPage().clickNine();
+        callPage().clickFive();
+        callPage().clickFive();
+        callPage().clickZero();
+        callPage().clickZero();
+        callPage().clickFive();
+        callPage().clickFive();
+        callPage().clickFive();
+        callPage().clickZero();
+        callPage().clickVoiceCallButton();
+        Thread.sleep(10000);
+        driver.pressKey(new KeyEvent(AndroidKey.ENDCALL));
+//        callPage().clickEndCallButton();
         getCallRecord();
         AllureScreenshot.takeScreenshot("callToAutoDialer", driver);
     }
 
     @SneakyThrows
     public void callToAutoDialer() {
+        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         driver.runAppInBackground(Duration.ofSeconds(-1));
-        wait.implicitWait(driver, 10);
-        driver.findElementByXPath("//android.widget.ImageView[@content-desc=\"Телефон\"]").click();
-        driver.findElementById("com.google.android.dialer:id/dialpad_fab").click();
-        //TODO: -change to your language AccessibilityId, or find new locator and make change
-        driver.findElementById("com.google.android.dialer:id/eight").click();
-        driver.findElementById("com.google.android.dialer:id/nine").click();
-        driver.findElementById("com.google.android.dialer:id/two").click();
-        driver.findElementById("com.google.android.dialer:id/six").click();
-        driver.findElementById("com.google.android.dialer:id/two").click();
-        driver.findElementById("com.google.android.dialer:id/zero").click();
-        driver.findElementById("com.google.android.dialer:id/zero").click();
-        driver.findElementById("com.google.android.dialer:id/zero").click();
-        driver.findElementById("com.google.android.dialer:id/zero").click();
-        driver.findElementById("com.google.android.dialer:id/nine").click();
-        driver.findElementById("com.google.android.dialer:id/nine").click();
-        driver.findElementById("com.google.android.dialer:id/dialpad_voice_call_button").click();
-        Thread.sleep(30000);
-        driver.findElementById("com.google.android.dialer:id/incall_end_call").click();
+        wait.implicitWait(driver,10);
+        mainPage().clickOnPhone();
+        callPage().clickDialPad();
+        callPage().clickEight();
+        callPage().clickNine();
+        callPage().clickTwo();
+        callPage().clickSix();
+        callPage().clickTwo();
+        callPage().clickZero();
+        callPage().clickZero();
+        callPage().clickZero();
+        callPage().clickZero();
+        callPage().clickNine();
+        callPage().clickNine();
+        callPage().clickVoiceCallButton();
+        Thread.sleep(10000);
+        driver.pressKey(new KeyEvent(AndroidKey.ENDCALL));
+//        callPage().clickEndCallButton();
         getCallRecord();
         AllureScreenshot.takeScreenshot("callToAutoDialer", driver);
     }
@@ -125,7 +126,9 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
 
     @SneakyThrows
     public void interruptedOutgoingSmsCall() {
+        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         driver.runAppInBackground(Duration.ofSeconds(-1));
+        wait.implicitWait(driver,10);
         mainPage().clickOnPhone();
         callPage().clickDialPad();
         callPage().clickEight();
@@ -153,26 +156,26 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
 
     @SneakyThrows
     public void callToInvalidNumber() {
+        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
+        wait.implicitWait(driver,10);
         driver.runAppInBackground(Duration.ofSeconds(-1));
-        wait.implicitWait(driver, 10);
-        driver.findElementByAccessibilityId("Телефон").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
-        driver.findElementById("com.android.contacts:id/contacts_dialpad_eight").click();
-        driver.findElementById("com.android.contacts:id/dialButton").click();
-        Thread.sleep(3000);
-        driver.findElementById("com.android.incallui:id/endButton").click();
+        mainPage().clickOnPhone();
+        callPage().clickDialPad();
+        callPage().clickEight();
+        callPage().clickEight();
+        callPage().clickEight();
+        callPage().clickEight();
+        callPage().clickVoiceCallButton();
+        Thread.sleep(5000);
+        driver.pressKey(new KeyEvent(AndroidKey.ENDCALL));
+        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         getCallRecord();
         AllureScreenshot.takeScreenshot("callToInvalidNumber", driver);
     }
 
-
     public void getCallRecord() {
-        List<WebElement> callList = driver.findElementsById("com.google.android.dialer:id/new_call_log_recycler_view");
-        System.out.println(callList.get(0));
-        assertTrue(callList.get(0).isDisplayed());
+//        List<WebElement> callList = driver.findElementsById("com.google.android.dialer:id/new_call_log_recycler_view");
+//        System.out.println(callList.get(0));
+//        assertTrue(callList.get(0).isDisplayed());
     }
 }
