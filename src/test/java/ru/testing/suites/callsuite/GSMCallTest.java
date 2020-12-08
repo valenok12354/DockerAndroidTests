@@ -22,28 +22,34 @@ public class GSMCallTest extends AbstractCallTest {
         super.setUpTechnology();
         driver.findElementByXPath(networkProperties().getProperty("Basic") + NUMBER).click(); // 1->5G, 2->LTE, 3->3G 4-GSM only
     }
-
+    @Disabled
     @Test
     @Override
     public void callToAutoDialer() {
         super.callToAutoDialer();
     }
-
+    @Disabled
     @Test
     @Override
     public void interruptedOutgoingSmsCall() {
         super.interruptedOutgoingSmsCall();
     }
-
+    @Disabled
     @Test
     @Override
     public void callToInvalidNumber() {
         super.callToInvalidNumber();
     }
-
+    @Disabled
     @Test
     @Override
     public void callToDomesticNumber() {
         super.callToDomesticNumber();
+    }
+
+    @Test
+    @Override
+    public void dtmfCall() {
+        super.dtmfCall();
     }
 }

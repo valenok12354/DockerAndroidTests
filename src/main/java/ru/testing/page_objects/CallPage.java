@@ -56,6 +56,9 @@ public class CallPage {
     @FindBy(id = "com.google.android.dialer:id/nine")
     private WebElement nine;
 
+    @FindBy(id = "com.google.android.dialer:id/incall_second_button")
+    private WebElement keyboard;
+
     public CallPage(AndroidDriver driver) {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
@@ -116,11 +119,5 @@ public class CallPage {
         endCallButton.click();
     }
 
-    public void longZero() {
-        zero.getText();
-    }
-
-    public boolean callList() {
-       return callList.get(0).isDisplayed();
-    }
+    public void clickKeyboard() {keyboard.click();}
 }
