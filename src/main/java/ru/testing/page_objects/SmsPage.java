@@ -12,6 +12,9 @@ public class SmsPage {
     @AndroidFindBy(accessibility = "Начать чат")
     private WebElement newMessage;
 
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[2]")
+    private WebElement willRecallPhrase;
+
     @FindBy(id = "com.google.android.apps.messaging:id/recipient_text_view")
     private WebElement recipientsEdit;
 
@@ -47,9 +50,12 @@ public class SmsPage {
         sendSmsArrow.click();
     }
 
+    public void willRecallPhrase() {
+        willRecallPhrase.click();
+    }
+
     public void callSmsClick() {
         mmsButton.click();
-//        smsDeclineText.click();
     }
 
     public void declineSmsTextClick() {

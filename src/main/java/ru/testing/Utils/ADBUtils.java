@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ADBUtils {
     public static void main(String[] args) {
-        runProcess("adb reboot");
+        runProcess("adb shell  \"dumpsys telephony.registry | grep mCallState\"");
     }
     private static final String[] WIN_RUNTIME = {"cmd.exe", "/C"};
 

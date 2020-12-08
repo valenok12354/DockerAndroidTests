@@ -26,6 +26,7 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
     private static final String PREFERRED_NW_PACKAGE = "com.android.phone";
     private static final String PREFERRED_NW_ACTIVITY = "com.android.phone.settings.PreferredNetworkTypeListPreference";
     private final static String declineButtonUnLocked = "com.android.incallui:id/declinebutton";
+
     private static CallPage callPage;
     private static SmsPage smsPage;
     private static MainPage mainPage;
