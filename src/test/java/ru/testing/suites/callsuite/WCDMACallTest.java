@@ -46,4 +46,10 @@ public class WCDMACallTest extends AbstractCallTest {
     public void callToDomesticNumber() {
         super.callToDomesticNumber();
     }
+
+    @Test
+    @Override
+    public void dtmfCall() {
+        super.dtmfCall();
+    }
 }
