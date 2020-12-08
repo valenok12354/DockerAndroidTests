@@ -14,3 +14,6 @@ MANDATORY!!! setting for while in developer settings
 
 1. Set the screen always ON
 2. Set "skip lock screen, always get on the main"
+
+Strongly recommended to reboot device before testing
+and start new instanse of Appium.

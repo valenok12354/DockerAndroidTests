@@ -57,8 +57,8 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
     @Disabled
     @SneakyThrows
     public void setUpTechnology() {
+        wait.implicitWait(driver,10);
         driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
-        wait.implicitWait(driver, 10);
         utils.launchActivity(driver, new Activity(PREFERRED_NW_PACKAGE, PREFERRED_NW_ACTIVITY));
     }
 
@@ -69,9 +69,9 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
 
     @SneakyThrows
     public void callToDomesticNumber() {
+        wait.implicitWait(driver,10);
         driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         driver.runAppInBackground(Duration.ofSeconds(-1));
-        wait.implicitWait(driver,10);
         mainPage().clickOnPhone();
         callPage().clickDialPad();
         TouchAction action = new TouchAction(driver);
@@ -92,16 +92,15 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
         callPage().clickVoiceCallButton();
         Thread.sleep(10000);
         driver.pressKey(new KeyEvent(AndroidKey.ENDCALL));
-//        callPage().clickEndCallButton();
         getCallRecord();
         AllureScreenshot.takeScreenshot("callToAutoDialer", driver);
     }
 
     @SneakyThrows
     public void callToAutoDialer() {
-        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
-        driver.runAppInBackground(Duration.ofSeconds(-1));
         wait.implicitWait(driver,10);
+        driver.runAppInBackground(Duration.ofSeconds(-1));
+        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         mainPage().clickOnPhone();
         callPage().clickDialPad();
         callPage().clickEight();
@@ -126,9 +125,9 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
 
     @SneakyThrows
     public void interruptedOutgoingSmsCall() {
+        wait.implicitWait(driver,10);
         driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         driver.runAppInBackground(Duration.ofSeconds(-1));
-        wait.implicitWait(driver,10);
         mainPage().clickOnPhone();
         callPage().clickDialPad();
         callPage().clickEight();
@@ -156,8 +155,8 @@ public abstract class AbstractCallTest extends AndroidTestSetUp {
 
     @SneakyThrows
     public void callToInvalidNumber() {
-        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         wait.implicitWait(driver,10);
+        driver.pressKey(new KeyEvent(AndroidKey.WAKEUP));
         driver.runAppInBackground(Duration.ofSeconds(-1));
         mainPage().clickOnPhone();
         callPage().clickDialPad();

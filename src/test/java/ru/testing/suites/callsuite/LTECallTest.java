@@ -11,8 +11,8 @@ import static ru.testing.settings.SetProperties.networkProperties;
 @TestInstance(PER_CLASS)
 @SpringBootTest(classes = Application.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class GSMCallTest extends AbstractCallTest {
-    private final static String NUMBER = "[4]";
+public class LTECallTest extends AbstractCallTest {
+    private final static String NUMBER = "[2]";
 
     @Test
     @Order(1)
